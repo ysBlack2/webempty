@@ -81,7 +81,7 @@ namespace webempty.Services.Implementations
 		public async Task<model1?> getproductnoinclude(int id)
 		{
 			return await _repository.GetByIdAsync(id);
-
+				
 		}
 		public async Task<List<model1>> getproducts()
 		{
@@ -135,6 +135,7 @@ namespace webempty.Services.Implementations
 			}
 
 		}
+
 		private async Task<(List<string>?,string)> Addproductimages(List<IFormFile>? files,int productid)
 		{
 			var pathlist = new List<string>();

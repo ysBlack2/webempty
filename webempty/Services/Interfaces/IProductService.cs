@@ -14,8 +14,5 @@ namespace webempty.Services.Interfaces
 		public Task<string> deleteproduct(model1 product);
 		public Task<bool> IsProductNameExistAsync(string name);
 		public Task<bool> IsProductNameExistexcludeAsync(string name,int id);
-
-		
-
 	}
 }

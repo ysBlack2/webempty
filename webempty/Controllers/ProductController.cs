@@ -81,13 +81,6 @@ namespace webempty.Controllers
 
 
 					var product = _mapper.Map<model1>(model);
-					//var product = new model1() {
-
-					//	Name = model.Name,
-					//	Price= model.Price,
-					//	CategoryId= model.CategoryId,
-
-					//};
 
 					await _productService.addproduct(product,model.Files);
 

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using webempty.Models;
 using webempty.Services.Interfaces;
 using webempty.ViewModels.Categories;
 
@@ -22,6 +23,84 @@ namespace webempty.Controllers
 			var categories = await _categoryService.GetCategoriesAsync();
 			var result = _mapper.Map<List<GetCategoriesListViewModel>>(categories);
 			return View(result);
+		}
+		[HttpGet]
+		public async Task<IActionResult> Details(int? id)
+		{
+			if(id==null){return NotFound();}
+			var category = await _categoryService.getcategory((int)id);
+			var result = _mapper.Map<GetCategoryByIdViewModel>(category);
+			return View(result);
+		}
+		[HttpGet]
+		public IActionResult Create()
+		{
+			return View();
+		}
+		[HttpPost]
+		public async Task<IActionResult> Create(AddCategoryViewModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var category = _mapper.Map<Category>(model);
+				var result = await _categoryService.addcategoryasync(category);
+				if (result != "Success")
+				{
+					return BadRequest(result);
+				}
+				return RedirectToAction(nameof(Index));
+			}
+			return View(model);
+		}
+		[HttpGet]
+		public async Task<IActionResult> Update(int? id)
+		{
+			if (id == null) return NotFound();
+			var category = await _categoryService.getcategory((int)id);
+			if (category == null) return NotFound();
+			var response = _mapper.Map<UpdateCategoryViewModel>(category);
+			return View(response);
+		}
+		[HttpPost]
+		public async Task<IActionResult> Update(UpdateCategoryViewModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var oldCategory = await _categoryService.getcategorynoinclude(model.Id);
+				if (oldCategory == null) return NotFound();
+				var category = _mapper.Map(model, oldCategory);
+				var result = await _categoryService.Updatecategoryasync(category);
+				if (result != "Success")
+				{
+					return BadRequest(result);
+				}
+				return RedirectToAction(nameof(Index));
+			}
+			return View(model);
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> Delete(int? id)
+		{
+			if (id == null) return NotFound();
+			var category = await _categoryService.getcategory((int)id);
+			if (category == null) return NotFound();
+			var response = _mapper.Map<GetCategoryByIdViewModel>(category);
+			return View(response);
+		}
+
+		[HttpPost, ActionName("Delete")]
+		public async Task<IActionResult> DeleteConfirm(int? id)
+		{
+			if (id == null) return NotFound();
+			var category = await _categoryService.getcategorynoinclude((int)id);
+			if (category == null) return NotFound();
+			var result = await _categoryService.deletecategoryasync(category);
+			if (result != "Success")
+			{
+				return BadRequest(result);
+			}
+			return RedirectToAction(nameof(Index));
 		}
 	}
 }

@@ -20,6 +20,9 @@
                     <li class="nav-item">
                         <a asp-controller="Product" asp-action="Index" class="nav-link" >Products</a>
                     </li>
+                    <li class="nav-item">
+                        <a asp-controller="Category" asp-action="Index" class="nav-link">Categories</a>
+                    </li>
                     @* this without taghelper
                         <li class="nav-item">
                         @Html.ActionLink("Products"/*name of link*/,"Index"/*where to go*/,"Product"/*Controller*/);
@@ -31,8 +34,10 @@
                     <li class="nav-item">
                         <a asp-controller="Home" asp-action="Privacy" class="nav-link">Privacy</a>
                     </li>
-                   
 
+                    <li class="nav-item">
+                        <a asp-controller="Roles" asp-action="Index" class="nav-link">Roles</a>
+                    </li>
                    
                 </ul>
                 <ul class="navbar-nav me-auto">
