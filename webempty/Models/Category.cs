@@ -4,6 +4,7 @@ namespace webempty.Models
 {
 	public class Category
 	{
+		//help
 		[Key]
 		public int Id { get; set; }
 		public string Name { get; set; }
