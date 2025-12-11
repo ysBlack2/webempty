@@ -1,0 +1,45 @@
+﻿@using webempty.ViewModels.Products
+@model AddProductViewModel
+
+<div>
+	<form asp-action="Create" method="post" enctype="multipart/form-data">
+
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			
+		<div>
+				<label asp-for="Name">Name:</label>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+		</div>
+
+
+		<div>
+				<label asp-for="Price">Price</label>
+				<input asp-for="Price" class="form-control" value="0"/>
+				<span asp-validation-for="Price" class="text-danger"></span>
+
+		</div>
+
+		<div>
+			<label asp-for="Files">File</label>
+			<input type="file" asp-for="Files" class="form-control" value="0" multiple/>
+			<span asp-validation-for="Files" class="text-danger"></span>
+
+		</div>
+
+		<div>
+			<label asp-for="CategoryId">Category</label>
+			<select asp-for ="CategoryId" class="form-control" asp-items="ViewBag.categories">
+
+			</select>
+			<span asp-validation-for="CategoryId" class="text-danger"></span>
+
+		</div>
+		
+		<div>
+			<input type="submit" value="Save" class="btn btn-info" />
+		</div>
+
+	</form>
+</div>
+

@@ -1,0 +1,66 @@
+﻿@using Microsoft.Extensions.Localization
+@using webempty.Resources
+@using webempty.ViewModels
+@using webempty.ViewModels.Products
+@model IEnumerable<GetProductListViewModel>
+@inject IStringLocalizer<SharedResources> _sharedResources;
+@{
+
+	ViewBag.Title="Product List";
+}
+<h1 class="text-center">Product List: </h1>
+<div >
+	<p>
+			<a asp-action="Create" class="btn btn-primary">Create New Product</a>
+	</p>
+
+	<div class ="d-flex">
+		<div>
+			<form asp-action="Index" method="get">
+				<input type="text" id="search" name="search" value="@ViewBag.currentSearch" placeholder="search..." />
+				<input type="submit" value="search" />
+			</form>
+		</div>
+		<div>
+			<input type="text" id="searchtext" value="@ViewBag.currentSearchajax" placeholder="Search By Anything..." />
+				
+
+		</div>
+	</div>
+</div>
+<div id="productdata">
+	@await Html.PartialAsync("_ProductList",Model)
+
+</div>
+<script>
+	$(document).ready(function(){
+		$("#searchtext").on('input',function(){
+			var searchstring= $(this).val();
+			$.ajax({
+				url:'@Url.Action("SearchproductList","Product")',
+				type:'Get',
+				data:{searchText:searchstring},
+				success:function(data){
+					var itemList=$('#productList');
+					itemList.empty();
+					$.each(data.result,function(index,item){
+						console.log(item)
+						var row ='<tr>'+
+						'<td>'+item.id+'</td>'+
+						'<td>'+item.name+'</td>'+
+						'<td>'+item.price+'</td>'+
+						'</tr>';
+						itemList.append(row)
+
+					});
+				}
+			})
+		})
+	})
+
+</script>	
+ @section Scripts {
+	
+	<script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+
+} 

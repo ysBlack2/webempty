@@ -1,0 +1,13 @@
+﻿@model model1
+@inject IProductService _productService;
+@{
+
+	ViewBag.Title="Product List";
+}
+	<h1>@TempData.Peek("userId")</h1>
+	<h1>@{TempData.Keep("username");}</h1>
+
+	<h1>@_productService.</h1>
+	<h1 class="alert alert-success ">Welcome @Model.Name </h1>
+	<h1>Product Name: @Model.Name </h1>
+

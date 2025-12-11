@@ -1,0 +1,48 @@
+﻿@using webempty.ViewModels.Products
+@model UpdateProductViewModel
+
+<div>
+	<form asp-action="Update" method="post" enctype="multipart/form-data">
+		<input asp-for="Id" hidden />
+		<div>
+			<label asp-for="Name">Name:</label>
+			<input asp-for="Name" class="form-control" />
+		</div>
+		<div>
+			<label asp-for="Price">Price</label>
+			<input asp-for="Price" class="form-control" />
+		</div>
+		<div>
+			<label>Current Images</label>
+			@foreach(var path in Model.CurrentPaths)
+			{
+				<img src="@path" height="50" width="50" />
+				<input asp-for="CurrentPaths" hidden/>
+			}
+			
+		</div>
+
+		<div>
+			<label asp-for="Files">File</label>
+			<input type="file" asp-for="Files" class="form-control" value="0" multiple />
+			<span asp-validation-for="Files" class="text-danger"></span>
+
+		</div>
+
+		<div>
+			<label asp-for="CategoryId">Category</label>
+			<select asp-for="CategoryId" class="form-control" asp-items="ViewBag.categories">
+			</select>
+			<span asp-validation-for="CategoryId" class="text-danger"></span>
+
+		</div>
+
+		<div>
+			<input type="submit" value="Save" class="btn btn-info" />
+		</div>
+		
+		
+
+	</form>
+</div>
+
