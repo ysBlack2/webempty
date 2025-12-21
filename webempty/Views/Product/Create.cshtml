@@ -1,6 +1,7 @@
 ﻿@using webempty.ViewModels.Products
 @model AddProductViewModel
 
+//lol
 <div>
 	<form asp-action="Create" method="post" enctype="multipart/form-data">
 
@@ -29,7 +30,7 @@
 
 		<div>
 			<label asp-for="CategoryId">Category</label>
-			<select asp-for ="CategoryId" class="form-control" asp-items="ViewBag.categories">
+			<select asp-for ="CategoryId" class="form-control" asp-items="@ViewBag.categories">
 
 			</select>
 			<span asp-validation-for="CategoryId" class="text-danger"></span>
