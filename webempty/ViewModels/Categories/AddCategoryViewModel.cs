@@ -2,6 +2,7 @@
 
 namespace webempty.ViewModels.Categories
 {
+	//idkkkk
 	public class AddCategoryViewModel
 	{
 		[Required]
