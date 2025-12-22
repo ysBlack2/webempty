@@ -6,6 +6,7 @@ namespace webempty.ViewModels.Products
 {
 	public class UpdateProductViewModel
 	{
+		//lol
 		public int Id { get; set; }
 		[Required(ErrorMessage = "NameIsRequired")]
 		[Remote("IsProductNameExistexclude", "model1", HttpMethod = "Post",AdditionalFields ="Id" ,ErrorMessage = "Name is Already Exist")]
